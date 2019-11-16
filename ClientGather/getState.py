@@ -4,11 +4,15 @@ import socket
 import os
 import threading
 import mss
+import sys
+
+sys.path.append('C:\\Users\\trevo\\OneDrive\\TrevorProgramming\\Laptop\\CSGOBot_V1\\src\\ScreenCapture')
+sys.path.append('C:\\Users\\trevo\\OneDrive\\TrevorProgramming\\Laptop\\CSGOBot_V1\\src\\Server')
+
 
 from getKeys import key_check
 from getScreen import grab_screen
 from mouseMovement import get_mouse_position
-from sys import executable
 from subprocess import Popen, CREATE_NEW_CONSOLE
 from startServer import MyServer, MyRequestHandler
 
