@@ -1,5 +1,8 @@
-Using this project to learn reinforcement learning. Below are the actions that the bot should be able to make.
+Using this project to learn reinforcement learning. 
 
+# Current TO-DO list
+
+### 1. Give bot actions that it can use.
 
                 Actions
 
@@ -46,3 +49,7 @@ Using this project to learn reinforcement learning. Below are the actions that t
       Personal Score: [int]
       Health: [int]
       Armor: [int]
+
+### 2. Create an OpenAI gym for CSGO
+
+This may prove to be difficult but would writing this bot much easier. Also, it could help with training distribution.
