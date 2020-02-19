@@ -1,3 +1,6 @@
+Using this project to learn reinforcement learning. Below are the actions that the bot should be able to make.
+
+
                 Actions
 
 
