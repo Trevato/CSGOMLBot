@@ -197,7 +197,7 @@ def play_csgo(policy):
 
             coord = tf.train.Coordinator()
             if load_model == True:
-                print 'Loading Model...'
+                print('Loading Model...')
                 ckpt = tf.train.get_checkpoint_state(model_path)
                 saver.restore(sess,ckpt.model_checkpoint_path)
             else:
