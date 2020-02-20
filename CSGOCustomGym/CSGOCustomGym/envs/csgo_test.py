@@ -188,10 +188,9 @@ def play_csgo(policy):
             workers.append(Worker(environment=environment,
                                   name=i,
                                   s_size=s_size,
-                                  a_sizse=a_size,
+                                  a_size=a_size,
                                   trainer=trainer,
-                                  saver=saver,
-                                  model_path))
+                                  saver=saver))
 
         with tf.Session() as sess:
 
