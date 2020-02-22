@@ -4,7 +4,13 @@ import time
 import random
 import numpy as np
 from PIL import Image
+from matplotlib.pyplot import imshow
 
+import timeit
+
+
+WIDTH = 1920
+HEIGHT = 1080
 
 class pyscope :
     screen = None;
@@ -40,7 +46,7 @@ class pyscope :
 
         # Technically the screen "doesn't exist" so give it a hard value. This will
         # match the game screen.
-        size = (100,100)
+        size = (WIDTH,HEIGHT)
         print("Framebuffer size: %d x %d" % (size[0], size[1]))
         self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
         # Clear the screen to start
@@ -53,6 +59,16 @@ class pyscope :
     def __del__(self):
         "Destructor to make sure pygame shuts down, etc."
 
+    def screenshot(self):
+
+        # Take "screenshot".
+
+        data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
+
+        # Again placing a hardcoded region for testing.
+        image = Image.frombytes('RGB', (WIDTH,HEIGHT), data)
+        return image
+
     def test(self):
         # Fill the screen with red (255, 0, 0)
         red = (255, 0, 0)
@@ -60,21 +76,7 @@ class pyscope :
         # Update the display
         pygame.display.update()
 
-
-        # Take "screenshot".
-
-        data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
-        # image = Image.frombytes('RGB', (self._screen_width, self._screen_height), data)
-
-        # Again placing a hardcoded region for testing.
-        image = Image.frombytes('RGB', (100,100), data)
-        image.show()
-        # image = image.convert('L')  # Convert to greyscale
-        matrix = np.asarray(image.getdata(), dtype=np.uint8)
-        matrix = (matrix - 128)/(128 - 1)  # Normalize from -1 to 1
-        return matrix.reshape(image.size[0], image.size[1])
-
 # Create an instance of the PyScope class
 scope = pyscope()
 scope.test()
-time.sleep(10)
+print(timeit.Timer(scope.screenshot).timeit(120))
