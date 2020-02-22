@@ -65,11 +65,10 @@ class pyscope :
 
         data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
         # image = Image.frombytes('RGB', (self._screen_width, self._screen_height), data)
-        
+
         # Again placing a hardcoded region for testing.
         image = Image.frombytes('RGB', (100,100), data)
-        image = image.convert('L')  # Convert to greyscale
-        image = image.resize((INPUT_HEIGHT, INPUT_WIDTH))
+        # image = image.convert('L')  # Convert to greyscale
         matrix = np.asarray(image.getdata(), dtype=np.uint8)
         matrix = (matrix - 128)/(128 - 1)  # Normalize from -1 to 1
         return matrix.reshape(image.size[0], image.size[1])
