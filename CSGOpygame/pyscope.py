@@ -2,6 +2,9 @@ import os
 import pygame
 import time
 import random
+import numpy as np
+from PIL import Image
+
 
 class pyscope :
     screen = None;
@@ -56,6 +59,17 @@ class pyscope :
         self.screen.fill(red)
         # Update the display
         pygame.display.update()
+
+
+        # Take "screenshot".
+
+        data = pygame.image.tostring(self._screen, 'RGB')  # Take screenshot
+        image = Image.frombytes('RGB', (self._screen_width, self._screen_height), data)
+        image = image.convert('L')  # Convert to greyscale
+        image = image.resize((INPUT_HEIGHT, INPUT_WIDTH))
+        matrix = np.asarray(image.getdata(), dtype=np.uint8)
+        matrix = (matrix - 128)/(128 - 1)  # Normalize from -1 to 1
+        return matrix.reshape(image.size[0], image.size[1])
 
 # Create an instance of the PyScope class
 scope = pyscope()
