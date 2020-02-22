@@ -32,7 +32,7 @@ class pyscope :
 
         if not found:
             os.environ['SDL_VIDEODRIVER']='dummy'
-            raise Exception('No suitable video driver found! Setting to dummy...')
+            print('No suitable video driver found! Setting to dummy...')
 
         size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
         print("Framebuffer size: %d x %d" % (size[0], size[1]))
