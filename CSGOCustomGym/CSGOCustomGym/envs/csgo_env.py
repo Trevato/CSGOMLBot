@@ -30,13 +30,17 @@ class PreprocessFrame(gym.ObservationWrapper):
 class ActionsDiscretizer(gym.ActionWrapper):
     """
     Wrap a gym-retro environment and make it use discrete
-    actions for the Sonic game.
+    actions for the CSGO game.
     """
     def __init__(self, env):
         super(ActionsDiscretizer, self).__init__(env)
-        buttons = ["B", "A", "MODE", "START", "UP", "DOWN", "LEFT", "RIGHT", "C", "Y", "X", "Z"]
-        actions = [['LEFT'], ['RIGHT'], ['LEFT', 'DOWN'], ['RIGHT', 'DOWN'], ['DOWN'],
-                   ['DOWN', 'B'], ['B']]
+        buttons = ['W', 'S', 'A', 'D', 'SPACE', 'CTRL', 'SHIFT', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    'LC', 'RC', 'R', 'LL', 'LR', 'LU', 'LD']
+
+        actions = ['MOVE_FORWARD', 'MOVE_BACKWARD', 'MOVE_LEFT', 'MOVE_RIGHT', 'JUMP', 'CROUCH', 'WALK',
+                    'SWAP_1', 'SWAP_2', 'SWAP_3', 'SWAP_4', 'SWAP_5', 'SWAP_6', 'SWAP_7', 'SWAP_8', 'SWAP_9',
+                    'SHOOT', 'AIM', 'RELOAD', 'LOOK_LEFT', 'LOOK_RIGHT', 'LOOK_UP', 'LOOK_DOWN']
+                    
         self._actions = []
 
         """
