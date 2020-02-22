@@ -33,7 +33,8 @@ class pyscope :
         if not found:
             raise Exception('No suitable video driver found!')
 
-        size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
+        # size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
+        size = (100,100)
         print("Framebuffer size: %d x %d" % (size[0], size[1]))
         self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
         # Clear the screen to start
