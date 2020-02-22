@@ -8,6 +8,9 @@ import tensorflow.keras.losses as kls
 import tensorflow.keras.optimizers as ko
 
 
+# THIS IS A TEST TRAIN FILE. USES CARTPOLE GYM.
+
+
 class ProbabilityDistribution(tf.keras.Model):
     def call(self, logits):
         # sample a random categorical action from given logits
