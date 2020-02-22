@@ -1,7 +1,7 @@
 import cv2, gym, numpy as np
 from retro_contest.local import make
 from retro import make as make_retro
-from baselines.common.atari_wrappers import FrameStack
+# from baselines.common.atari_wrappers import FrameStack
 
 cv2.ocl.setUseOpenCL(False)
 
@@ -40,7 +40,7 @@ class ActionsDiscretizer(gym.ActionWrapper):
         actions = ['MOVE_FORWARD', 'MOVE_BACKWARD', 'MOVE_LEFT', 'MOVE_RIGHT', 'JUMP', 'CROUCH', 'WALK',
                     'SWAP_1', 'SWAP_2', 'SWAP_3', 'SWAP_4', 'SWAP_5', 'SWAP_6', 'SWAP_7', 'SWAP_8', 'SWAP_9',
                     'SHOOT', 'AIM', 'RELOAD', 'LOOK_LEFT', 'LOOK_RIGHT', 'LOOK_UP', 'LOOK_DOWN']
-                    
+
         self._actions = []
 
         """
@@ -76,7 +76,7 @@ def wrap_environment(environment, n_frames=4):
     environment = ActionsDiscretizer(environment)
     environment = RewardScaler(environment)
     environment = PreprocessFrame(environment)
-    environment = FrameStack(environment, n_frames)
+    # environment = FrameStack(environment, n_frames)
     return environment
 
 def create_new_environment(n_frames=4):
