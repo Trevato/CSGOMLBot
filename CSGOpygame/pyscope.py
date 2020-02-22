@@ -16,7 +16,7 @@ class pyscope :
 
         # Check which frame buffer drivers are available
         # Start with fbcon since directfb hangs with composite output
-        drivers = ['fbcon', 'directfb', 'svgalib']
+        drivers = ['fbcon', 'directfb', 'svgalib', 'dummy']
         found = False
         for driver in drivers:
             # Make sure that SDL_VIDEODRIVER is set
@@ -31,8 +31,7 @@ class pyscope :
             break
 
         if not found:
-            os.environ['SDL_VIDEODRIVER']='dummy'
-            print('No suitable video driver found! Setting to dummy...')
+            raise Exception('No suitable video driver found!')
 
         size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
         print("Framebuffer size: %d x %d" % (size[0], size[1]))
