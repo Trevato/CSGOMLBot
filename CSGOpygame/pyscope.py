@@ -68,6 +68,7 @@ class pyscope :
 
         # Again placing a hardcoded region for testing.
         image = Image.frombytes('RGB', (100,100), data)
+        image.show()
         # image = image.convert('L')  # Convert to greyscale
         matrix = np.asarray(image.getdata(), dtype=np.uint8)
         matrix = (matrix - 128)/(128 - 1)  # Normalize from -1 to 1
