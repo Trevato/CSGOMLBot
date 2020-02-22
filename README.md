@@ -52,4 +52,4 @@ Using this project to learn reinforcement learning.
 
 ### 2. Create an OpenAI gym for CSGO
 
-This may prove to be difficult but would writing this bot much easier. Also, it could help with training distribution.
+This may prove to be difficult but would make writing this bot much easier. Also, it could help with training distribution.
