@@ -63,7 +63,7 @@ class pyscope :
 
         # Take "screenshot".
 
-        data = pygame.image.tostring(self._screen, 'RGB')  # Take screenshot
+        data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
         image = Image.frombytes('RGB', (self._screen_width, self._screen_height), data)
         image = image.convert('L')  # Convert to greyscale
         image = image.resize((INPUT_HEIGHT, INPUT_WIDTH))
