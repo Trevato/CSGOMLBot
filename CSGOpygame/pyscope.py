@@ -67,6 +67,7 @@ class pyscope :
 
         # Again placing a hardcoded region for testing.
         image = Image.frombytes('RGB', (WIDTH,HEIGHT), data)
+        image.show()
         return image
 
     def test(self):
@@ -79,4 +80,5 @@ class pyscope :
 # Create an instance of the PyScope class
 scope = pyscope()
 scope.test()
-print(timeit.Timer(scope.screenshot).timeit(120))
+scope.screenshot()
+# print(timeit.Timer(scope.screenshot).timeit(120))
