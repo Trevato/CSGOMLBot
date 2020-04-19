@@ -1,11 +1,11 @@
 import numpy as np
 import cv2
-import mss
+from mss import mss
 import time
 from PIL import Image
 
 
-with mss.mss() as sct:
+with mss(display=":0.0") as sct:
     # Part of the screen to capture
     monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
 
