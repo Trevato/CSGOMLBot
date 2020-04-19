@@ -36,7 +36,10 @@ def test():
             print(filename)
 
 if __name__ == '__main__':
-    if input('Enter mode:') == 'fast':
+    resp = input('Enter mode:')
+    if resp == 'fast':
         fast_method()
-    elif input('Enter mode:') == 'test':
-        test()
+    elif resp == 'test':
+        import pdb
+        pdb.set_trace()
+        test()   
