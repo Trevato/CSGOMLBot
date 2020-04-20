@@ -82,6 +82,7 @@ class pyscope :
         with mss.mss(display=":0.0") as sct:
             # Part of the screen to capture
             monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
+            pygame.image.save(self.screen, 'output.png')
 
             while "Screen capturing":
                 last_time = time.time()
@@ -105,5 +106,4 @@ class pyscope :
 
 # Create an instance of the PyScope class
 scope = pyscope()
-scope.test()
 scope.screen_record()
