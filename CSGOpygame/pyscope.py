@@ -78,7 +78,7 @@ class pyscope :
         # Update the display
         pygame.display.update()
 
-    def fast_method():
+    def fast_method(self):
         with mss.mss(display="0.0") as sct:
             # Part of the screen to capture
             monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
@@ -102,7 +102,7 @@ class pyscope :
                 # if cv2.waitKey(25) & 0xFF == ord("q"):
                 #     cv2.destroyAllWindows()
                 #     break
-                
+
 # Create an instance of the PyScope class
 scope = pyscope()
 scope.test()
