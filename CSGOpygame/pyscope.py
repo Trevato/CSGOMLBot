@@ -50,8 +50,6 @@ class pyscope :
         size = (WIDTH,HEIGHT)
         print("Framebuffer size: %d x %d" % (size[0], size[1]))
         self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
-        # Clear the screen to start
-        self.screen.fill((0, 0, 0))
         # Initialise font support
         pygame.font.init()
         # Render the screen
