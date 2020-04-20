@@ -62,10 +62,6 @@ class pyscope :
 
     def screenshot(self):
 
-        # Take "screenshot".
-
-        pygame.image.save(self.screen, 'output.png')
-
         string_image = pygame.image.tostring(self.screen, 'RGB')
 
         temp_surf = pygame.image.fromstring(
@@ -73,12 +69,7 @@ class pyscope :
 
         tmp_arr = pygame.surfarray.array3d(temp_surf)
 
-        print(tmp_arr)
-
-        # Again placing a hardcoded region for testing.
-        image = Image.frombytes('RGB', (WIDTH, HEIGHT), string_image)
-        image.show()
-        return image
+        return tmp_arr
 
     def test(self):
         # Fill the screen with red (255, 0, 0)
@@ -116,5 +107,5 @@ class pyscope :
 scope = pyscope()
 scope.test()
 scope.screenshot()
-scope.fast_method()
-# print(timeit.Timer(scope.screenshot).timeit(120))
+
+print(timeit.Timer(scope.screenshot).timeit(120))
