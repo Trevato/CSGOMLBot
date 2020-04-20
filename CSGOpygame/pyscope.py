@@ -76,7 +76,7 @@ class pyscope :
         print(tmp_arr)
 
         # Again placing a hardcoded region for testing.
-        image = Image.frombytes('RGB', (WIDTH,HEIGHT), data)
+        image = Image.frombytes('RGB', (WIDTH, HEIGHT), string_image)
         image.show()
         return image
 
