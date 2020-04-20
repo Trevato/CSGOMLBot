@@ -14,7 +14,7 @@ WIDTH = 1920
 HEIGHT = 1080
 
 class pyscope :
-    screen = None;
+    screen = None
 
     def __init__(self):
         "Ininitializes a new pygame screen using the framebuffer"
@@ -64,9 +64,16 @@ class pyscope :
 
         # Take "screenshot".
 
-        data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
+        pygame.image.save(self.screen, 'output.png')
 
-        print(data)
+        string_image = pygame.image.tostring(self.screen, 'RGB')
+
+        temp_surf = pygame.image.fromstring(
+            string_image, (WIDTH, HEIGHT), 'RGB')
+
+        tmp_arr = pygame.surfarray.array3d(temp_surf)
+
+        print(tmp_arr)
 
         # Again placing a hardcoded region for testing.
         image = Image.frombytes('RGB', (WIDTH,HEIGHT), data)
