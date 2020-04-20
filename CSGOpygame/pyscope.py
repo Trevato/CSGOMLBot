@@ -60,16 +60,18 @@ class pyscope :
     def __del__(self):
         "Destructor to make sure pygame shuts down, etc."
 
-    def screenshot(self):
+    def screen_record(self):
 
-        string_image = pygame.image.tostring(self.screen, 'RGB')
+        while 'Screen capturing':
+            last_time = time.time()
+            string_image = pygame.image.tostring(self.screen, 'RGB')
 
-        temp_surf = pygame.image.fromstring(
-            string_image, (WIDTH, HEIGHT), 'RGB')
+            temp_surf = pygame.image.fromstring(
+                string_image, (WIDTH, HEIGHT), 'RGB')
 
-        tmp_arr = pygame.surfarray.array3d(temp_surf)
+            tmp_arr = pygame.surfarray.array3d(temp_surf)
 
-        return tmp_arr
+            print("fps: {}".format(1 / (time.time() - last_time)))
 
     def test(self):
         # Fill the screen with red (255, 0, 0)
@@ -106,6 +108,4 @@ class pyscope :
 # Create an instance of the PyScope class
 scope = pyscope()
 scope.test()
-scope.screenshot()
-
-print(timeit.Timer(scope.screenshot).timeit(120))
+scope.fast_method()
