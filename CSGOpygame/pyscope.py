@@ -66,6 +66,8 @@ class pyscope :
 
         data = pygame.image.tostring(self.screen, 'RGB')  # Take screenshot
 
+        print(data)
+
         # Again placing a hardcoded region for testing.
         image = Image.frombytes('RGB', (WIDTH,HEIGHT), data)
         image.show()
@@ -79,7 +81,7 @@ class pyscope :
         pygame.display.update()
 
     def fast_method(self):
-        with mss.mss(display="0.0") as sct:
+        with mss.mss(display=":0.0") as sct:
             # Part of the screen to capture
             monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
 
