@@ -108,4 +108,4 @@ class pyscope :
 # Create an instance of the PyScope class
 scope = pyscope()
 scope.test()
-scope.fast_method()
+scope.screen_record()
