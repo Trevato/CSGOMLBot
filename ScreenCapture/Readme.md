@@ -1,22 +1,23 @@
 # Notes for Screen (state) capture.
+*So far I am able to run simulations inside of the virtual display. Next we need to launch CSGO inside of it.*
 
-### This directory contains the files to gather observations for our agent.
+### First, we create the virtual display:
 
-First, it must launch the game.
-So far, I have been able to use something like:
-
-*Note: This is a work in progress.*
+This starts a virtual display named :1 with the GLX extension.
 
 ```
- export DISPLAY=:1
- Xvfb :1 -screen 0 1024x768x16 
- ```
- This creates a virtual display that steam can then run inside of:
- 
- *Note: The command here will be expanded to directly launch CSGO.*
- 
- ```
- DISPLAY=:1 steam
+LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX -screen 0 640x480x24 & 
  ```
  
- Once we have the game running, we can launch our Gamestate server for gathering client data and we can launch our screen recording scripts.
+### Then, we need to run something on that dislay:
+ 
+ *Note: This is a simulation. Hopefully CSGO will run in a similar fashion.*
+ 
+ ```
+LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:99 glxgears
+ ```
+ 
+ In order to view what the virtual display is showing, we can connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
+ ```
+ sudo x11vnc -safer -localhost -nopw -once -display :1 -auth /var/run/slim.auth
+ ```
