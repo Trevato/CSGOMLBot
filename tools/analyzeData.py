@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 import time
-import tensorflow as tf
 
 
 def analyze():
@@ -23,8 +22,6 @@ def analyze():
             x += 1
         i += 1
 
-def check_version():
-    print(tf.version())
 
 if __name__ == '__main__':
-    check_version()
+    analyze()

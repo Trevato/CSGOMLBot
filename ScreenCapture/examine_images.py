@@ -4,11 +4,11 @@ import time
 
 
 d = np.load(
-    'c:/Users/trevo/OneDrive/TrevorProgramming/Laptop/CSGOMLBot/test.npy')
+    'c:/Users/trevo/OneDrive/TrevorProgramming/Laptop/CSGOMLBot/ScreenCapture/test.npy')
 
 
 for image in d:
-    print(image)
+    print(image.shape)
     cv2.imshow("OpenCV/Numpy normal", image)
     if cv2.waitKey(25) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
