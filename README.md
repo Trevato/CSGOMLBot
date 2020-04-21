@@ -56,20 +56,6 @@ Based on the observation, the model decides on what the action should be for the
         [Buy Binds]
 
 
-                State Variables
-
-      Round Phase: [Playing, Buy]
-      Team Alive: [1-5]
-      Enemy Alive: [1-5]
-      Bomb Planted: [1 or 0]
-      Ammo in Mag: [int]
-      Total Ammo: [int]
-      Rounds Won: [int]
-      Rounds Lost: [int]
-      Personal Score: [int]
-      Health: [int]
-      Armor: [int]
-
 ### 3. Apply reward
 
 I haven't really looked at the reward function just yet as that is one of the key factors in improving the capabilities of the agent.
