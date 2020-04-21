@@ -18,3 +18,5 @@ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX 
  ```
  sudo x11vnc -safer -localhost -nopw -once -display :1 -auth /var/run/slim.auth
  ```
+
+Using the ```numpy_mss.py``` script, we can test the screenshot speed.
