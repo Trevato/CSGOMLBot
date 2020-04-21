@@ -1,26 +1,15 @@
 # Notes for Screen (state) capture.
-*So far I am able to run simulations inside of the virtual display. Next we need to launch CSGO inside of it.*
 
 ### First, we create the virtual display:
-
-This starts a virtual display named :1 with the GLX extension.
 
 ```
 LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX -screen 0 640x480x24 & 
  ```
  
-### Then, we need to run something on that dislay:
- 
- *Note: This is a simulation. Hopefully CSGO will run in a similar fashion.*
+### Then, we need to run CSGO on that dislay:
  
  ```
-LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:99 glxgears
- ```
- 
- Now, I am successfully able to launch steam and in turn, launch CSGO using the graphical interface:
- 
- ```
- LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:1 /path/to/script/steam.sh
+ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:1 /path/to/script/steam.sh -applaunch 730
  ```
  
 ### Lastly, we can view what it looks like for testing purposes:
