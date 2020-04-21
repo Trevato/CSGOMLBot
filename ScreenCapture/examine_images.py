@@ -5,5 +5,5 @@ from PIL import Image
 d = np.load('test.npy')
 
 for image in d:
-    img = Image.fromarray(image, 'RGB')
+    img = Image.fromarray(image, 'BGRA')
     img.show()
