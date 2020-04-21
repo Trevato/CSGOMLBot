@@ -17,6 +17,12 @@ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX 
 LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:99 glxgears
  ```
  
+ Now, I am successfully able to launch steam and in turn, launch CSGO using the graphical interface:
+ 
+ ```
+ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:1 /path/to/script/steam.sh
+ ```
+ 
 ### Lastly, we can view what it looks like for testing purposes:
  
  In order to view what the virtual display is showing, we can connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
