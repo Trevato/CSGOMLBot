@@ -28,7 +28,7 @@ def fast_method_with_screenshots():
             time.sleep(1)
 
 def test():
-    with mss.mss(display=":0") as sct:
+    with mss.mss(display=":1") as sct:
         for filename in sct.save():
             print(filename)
 
@@ -64,13 +64,11 @@ def fast_method_with_array():
             # Get raw pixels from the screen, save it to a Numpy array
             sct_img = sct.grab(monitor)
 
-            # print(dir(sct_img))
-
             array_of_images.append(np.array(sct_img))
 
             print("fps: {}".format(1 / (time.time() - last_time)))
 
-    np.save('test', array_of_images)
+    np.save('./test', array_of_images)
 
 
 def show_images(array):
@@ -86,10 +84,4 @@ def show_images(array):
 
 
 if __name__ == '__main__':
-    # resp = input('Enter mode:')
-    # if resp == 'fast':
-    #     fast_method()
-    # elif resp == 'test':
-    #     test()   
-
     fast_method_with_array()
