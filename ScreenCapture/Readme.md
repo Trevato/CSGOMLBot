@@ -3,7 +3,7 @@
 ### First, we create the virtual display:
 
 ```
-LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX -screen 0 640x480x24 & 
+LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :1 +extension GLX -screen 0 640x480x24 & 
  ```
  
 ### Then, we need to run CSGO on that dislay:
