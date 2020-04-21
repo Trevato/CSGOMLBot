@@ -10,7 +10,7 @@ Using this project to learn reinforcement learning.
 
 Game is launched inside of a Xvfb virtual display with VirtualGL enabled.
 
-### 3. Gather observations on running game.
+### 2. Gather observations on running game.
 
 Observations consist of two things:
 
@@ -19,7 +19,7 @@ Observations consist of two things:
 
 These observations are what get transfered to the model in order to decide on the next step and calculate reward.
 
-### 2. Give bot actions that it can use.
+### 3. Give bot actions that it can use.
 
 Based on the observation, the model decides on what the action should be for the next step. Listed, is a readable for of what the agent can do:
 
