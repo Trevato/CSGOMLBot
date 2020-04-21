@@ -1,9 +1,12 @@
 import numpy as np
-from PIL import Image
+import cv2
+import time
 
 
-d = np.load('test.npy')
+d = np.load(
+    'c:/Users/trevo/OneDrive/TrevorProgramming/Laptop/CSGOMLBot/ScreenCapture/test.npy')
 
 for image in d:
-    img = Image.fromarray(image, 'RGB')
-    img.show()
+    print(image)
+    cv2.imshow("OpenCV/Numpy normal", image)
+    time.sleep(.5)
