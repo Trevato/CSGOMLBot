@@ -21,7 +21,7 @@ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :99 +extension GLX 
 
 Using the ```numpy_mss.py``` script, we can test the screenshot speed.
 
-
+---
 ## Some Stats:
 
 So far, in my minimal testing, I have been able to take a screenshot, and convert it to a numpy array at an absurdly fast rate. (Note: the game is running in a very small window ATM.)
