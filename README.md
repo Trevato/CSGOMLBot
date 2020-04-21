@@ -10,7 +10,7 @@ Using this project to learn reinforcement learning.
 
 Game is launched inside of a Xvfb virtual display with VirtualGL enabled.
 
-### 2. Gather observations on running game.
+### 3. Gather observations on running game.
 
 Observations consist of two things:
 
@@ -56,6 +56,6 @@ Based on the observation, the model decides on what the action should be for the
         [Buy Binds]
 
 
-### 3. Apply reward
+### 4. Apply reward
 
 I haven't really looked at the reward function just yet as that is one of the key factors in improving the capabilities of the agent.
