@@ -7,7 +7,7 @@ from PIL import Image
 
 
 def fast_method_with_screenshots():
-    with mss.mss(display=":1") as sct:
+    with mss.mss(display=":0") as sct:
         # Part of the screen to capture
         monitor = {"top": 0, "left": 0, "width": 640, "height": 480}
 
@@ -28,13 +28,13 @@ def fast_method_with_screenshots():
             time.sleep(1)
 
 def test():
-    with mss.mss(display=":1") as sct:
+    with mss.mss(display=":0") as sct:
         for filename in sct.save():
             print(filename)
 
 
 def fast_method():
-    with mss.mss(display=":1") as sct:
+    with mss.mss(display=":0") as sct:
         # Part of the screen to capture
         monitor = {"top": 0, "left": 0, "width": 640, "height": 480}
 
@@ -49,12 +49,9 @@ def fast_method():
             print("fps: {}".format(1 / (time.time() - last_time)))
 
 
-def to_np(images):
-    return np.asarray(images, dtype=np.float32)
-
 def fast_method_with_array():
     array_of_images = []
-    with mss.mss(display=":1") as sct:
+    with mss.mss(display=":0") as sct:
         # Part of the screen to capture
         monitor = {"top": 0, "left": 0, "width": 640, "height": 480}
 
@@ -65,6 +62,8 @@ def fast_method_with_array():
             sct_img = sct.grab(monitor)
 
             array_of_images.append(np.array(sct_img))
+
+            print(array_of_images)
 
             print("fps: {}".format(1 / (time.time() - last_time)))
 
