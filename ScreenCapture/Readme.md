@@ -43,7 +43,7 @@ fps: 682.6666666666666
 fps: 910.4197959626655
 ```
 
-## TO-DO:
 ---
+## TO-DO:
 
 With the current setup, the game is running on the CPU. In the future, it may be beneficial to run in the GPU, or we can reserve that for training as the game runs fine.
