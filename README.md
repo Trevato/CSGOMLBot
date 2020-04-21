@@ -61,3 +61,10 @@ Based on the observation, the model decides on what the action should be for the
 ---
 
 I haven't really looked at the reward function just yet as that is one of the key factors in improving the capabilities of the agent.
+
+
+---
+---
+# Looking Forward
+
+I really would like CSGO to be merely a building block into what I believe could change machine learning. My goal is to first implement CSGO to gain a bit of traction and then move to include any Steam game. This way, different machine learning techniques can be used tested against many different environments very easily.
