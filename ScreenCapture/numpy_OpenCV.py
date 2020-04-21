@@ -6,9 +6,9 @@ from PIL import Image
 
 
 def fast_method():
-    with mss.mss(display="0.0") as sct:
+    with mss.mss(display=":1") as sct:
         # Part of the screen to capture
-        monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
+        monitor = {"top": 0, "left": 0, "width": 640, "height": 480}
 
         while "Screen capturing":
             last_time = time.time()
