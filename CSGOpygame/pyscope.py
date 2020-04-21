@@ -80,9 +80,9 @@ class pyscope :
         pygame.display.update()
 
     def fast_method(self):
-        with mss.mss(display=":0.0") as sct:
+        with mss.mss(display=":1") as sct:
             # Part of the screen to capture
-            monitor = {"top": 40, "left": 0, "width": 800, "height": 640}
+            monitor = {"top": 0, "left": 0, "width": 1024, "height": 768}
 
             while "Screen capturing":
                 last_time = time.time()
@@ -106,4 +106,4 @@ class pyscope :
 
 # Create an instance of the PyScope class
 scope = pyscope()
-scope.screen_record()
+scope.fast_method()
