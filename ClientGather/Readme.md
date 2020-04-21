@@ -17,3 +17,11 @@ We need a few things:
   3. Reward - *This will be a calculation based on the state*
   
 Given these things, we can create an environment where TF Agents can learn easily.
+
+---
+
+### Why use TF Environments?
+
+1. Easily test different Agents
+2. Easily expandable to other games
+3. [Parallelization](https://arxiv.org/abs/1709.02878)
