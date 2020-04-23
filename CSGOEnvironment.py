@@ -35,6 +35,7 @@ class CSOGEnvironment(py_environment.PyEnvironment):
         # Observation of the current client state in the game. This will change.
         'gamestate': array_spec.BoundedArraySpec((4,), np.int32, minimum=0,
                                               maximum=1)}
+
     self._state = [0,0,0,0,0]
     self._episode_ended = False
 
@@ -64,7 +65,7 @@ class CSOGEnvironment(py_environment.PyEnvironment):
       # a new episode.
       return self.reset()
 
-    # Make sure episodes don't go on forever.
+    # Execute movement in game.
     self.move(action)
 
     if self.game_over():
@@ -73,46 +74,43 @@ class CSOGEnvironment(py_environment.PyEnvironment):
     for movement in action:
       if movement:
         reward = 100
-        return ts.transition(
-            np.array([self._state], dtype=np.int32), reward=reward, discount=1.0)
+        return ts.transition(self.render(), reward=reward, discount=1.0)
       else:
-        return ts.transition(
-            np.array([self._state], dtype=np.int32), reward=0.0, discount=1.0)
+        return ts.transition(self.render(), reward=0.0, discount=1.0)
 
 
   def render(self, mode='rgb_array'):
 
-    # Grab screenshot of CSGO
-    return get_screen
+    # Grab screenshot of CSGO and normalize.
+    return np.divide(get_screen(), 255, dtype=np.float32)
+
 
   def move(self, action):
 
 # TODO: For every action, simulate a key press and then execute.
     if action[0]:
-      # Move forward (W)
-      pass
+      print('Move Forward')
     if action[1]:
-      # Move backwards (S)
-      pass
+      print('Move Backwards')
     if action[2]:
-      # Move left (A)
-      pass
+      print('Move Right')
     if action[3]:
-      # Move right (D)
-      pass
-    if action[3]:
-      # Shoot (Left Click)
-      pass
+      print('Move Left')
+    if action[4]:
+      print('Shoot')
 
 
   def game_over(self):
-
     pass
 
 
 if __name__ == '__main__':
 
   action_array = np.zeros(shape=(5,), dtype=np.int32)
+
+# Adjust the action array to adjust the actions.
+
+  action_array[3] = 1
 
   environment = CSOGEnvironment()
   time_step = environment.reset()
@@ -124,7 +122,6 @@ if __name__ == '__main__':
     print(time_step)
     cumulative_reward += time_step.reward
 
-  print(time_step)
   cumulative_reward += time_step.reward
   print('Final Reward = ', cumulative_reward)
 
