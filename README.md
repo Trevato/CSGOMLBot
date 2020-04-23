@@ -60,7 +60,7 @@ Based on the observation, the model decides on what the action should be for the
 ### 4. Apply reward
 ---
 
-I haven't really looked at the reward function just yet as that is one of the key factors in improving the capabilities of the agent.
+I think there should be some exploration reward, especially at the beginning of training. Some reward just for moving and visiting new places would be a good idea. Obviously rewarding frags, bomb plants, round wins, match wins, etc. are very important but I will be looking more into that with time.
 
 
 ---
