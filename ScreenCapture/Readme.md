@@ -3,7 +3,7 @@
 ### First, we start the game using an X display:
 
  ```
- xinit /root/.steam/steam.sh -applaunch 730 -gl
+ xinit /root/.steam/steam.sh -applaunch 730 -gl +map de_dust +cl_showfps 1 +sv_lan 1 -nointro
  ```
  
 ### Then, we can view what it looks like for testing purposes:
@@ -37,4 +37,4 @@ fps: 910.4197959626655
 ---
 ## TO-DO:
 
-With the current setup, the game is running on the CPU. In the future, it may be beneficial to run in the GPU, or we can reserve that for training as the game runs fine.
+The game runs on the GPU right now. That will probably hurt training performance but not sure yet. Also, I need to see if installing CUDA drivers will start to break things.
