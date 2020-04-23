@@ -71,12 +71,15 @@ class CSOGEnvironment(py_environment.PyEnvironment):
     if self.game_over():
       return ts.termination(np.array(self._state, dtype=np.int32), 0)
 
+    if self._episode_ended:
+      return ts.termination(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
+
     for movement in action:
       if movement:
         reward = 100
-        return ts.transition(self.render(), reward=reward, discount=1.0)
+        return ts.transition(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
       else:
-        return ts.transition(self.render(), reward=0.0, discount=1.0)
+        return ts.transition(observation = [self.render(), np.zeros(4)], reward=0.0, discount=1.0)
 
 
   def render(self, mode='rgb_array'):
@@ -101,7 +104,7 @@ class CSOGEnvironment(py_environment.PyEnvironment):
 
 
   def game_over(self):
-    pass
+    return self._episode_ended
 
 
 if __name__ == '__main__':
@@ -122,6 +125,8 @@ if __name__ == '__main__':
     print(time_step)
     cumulative_reward += time_step.reward
 
+  environment._episode_ended = True
+  time_step = environment.step(action_array)
   cumulative_reward += time_step.reward
   print('Final Reward = ', cumulative_reward)
 
