@@ -39,4 +39,6 @@ fps: 910.4197959626655
 ---
 ## TO-DO:
 
+Either render the game in a smaller frame or scale it down to mach the ```observation_spec```.
+
 The game runs on the GPU right now. That will probably hurt training performance but not sure yet. Also, I need to see if installing CUDA drivers will start to break things.
