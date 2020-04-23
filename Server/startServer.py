@@ -6,35 +6,13 @@ import requests
 import pprint
 
 
-class MyServer(HTTPServer):
+class CSGOGameStateServer(HTTPServer):
 
-    def __init__(self, server_address, RequestHandler):
-        self.gamestate_auth_token = 'gamestate'
+    def __init__(self, server_address, auth_token):
 
-        #Desired data
-        self.reward = 0
-        self.total_reward = 0
-        self.round_phase = None
-        self.deaths = 0
-        self.name = None
-        self.kills = 0
-        self.health = 0
-        self.score = 0
-        self.data = []
-        self.team = None
-        self.team_score = 0
-        self.opponent_team = None
-        self.opponent_team_score = 0
-        self.match_win = None
+        super(MyServer, self).__init__(server_address, CSGOGameStateRequestHandler)
+        self.auth_token = auth_token
 
-        self.kill_reward = 1000
-        self.round_win_reward = 3000
-        self.match_win_reward = 10000
-        self.death_reward = -2000
-        self.round_loss_reward = -6000
-        self.match_loss_reward = -20000
-
-        super(MyServer, self).__init__(server_address, RequestHandler)
 
     def add_reward(self, n):
         self.reward = self.reward + n
@@ -48,7 +26,7 @@ class MyServer(HTTPServer):
         self.reward = 0
 
 
-class MyRequestHandler(BaseHTTPRequestHandler):
+class CSGOGameStateRequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         # print(self.headers)
         length = int(self.headers['Content-Length'])
@@ -213,12 +191,12 @@ class MyRequestHandler(BaseHTTPRequestHandler):
         """
         return
 
-def start_server(server):
+def start_server():
 
     print(time.asctime(), '-', 'CS:GO gamestate server starting')
 
     try:
-        server.serve_forever()
+        CSGOGameStateServer.serve_forever()
     except (KeyboardInterrupt, SystemExit):
         print('Server unable to start!')
         pass

@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import threading
 import abc
 import tensorflow as tf
 import numpy as np
@@ -125,10 +126,9 @@ if __name__ == '__main__':
     print(time_step)
     cumulative_reward += time_step.reward
 
-  environment._episode_ended = True
-  time_step = environment.step(action_array)
+  # environment._episode_ended = True
+  # time_step = environment.step(action_array)
   cumulative_reward += time_step.reward
   print('Final Reward = ', cumulative_reward)
-
 
   # utils.validate_py_environment(env, episodes=5)

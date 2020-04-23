@@ -3,7 +3,6 @@ import cv2
 import mss
 import mss.tools
 import time
-from PIL import Image
 
 
 def fast_method_with_screenshots():
@@ -63,8 +62,6 @@ def fast_method_with_array():
 
             array_of_images.append(np.array(sct_img))
 
-            print(array_of_images)
-
             print("fps: {}".format(1 / (time.time() - last_time)))
 
     np.save('./test', array_of_images)
@@ -83,4 +80,5 @@ def show_images(array):
 
 
 if __name__ == '__main__':
-    fast_method_with_array()
+    for _ in range(1):
+        test()
