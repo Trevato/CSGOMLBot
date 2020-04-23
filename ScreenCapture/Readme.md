@@ -14,11 +14,11 @@ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :0 +extension GLX -
  
 ### Lastly, we can view what it looks like for testing purposes:
  
- Option 1:
+ **Option 1:**
  
  Log-in to Steam on any other computer and it will be just like another PC to stream from.
  
- Option 2:
+ **Option 2:**
  
  Connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
  ```
