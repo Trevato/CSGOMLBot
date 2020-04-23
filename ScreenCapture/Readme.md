@@ -1,31 +1,16 @@
 # Notes for Screen (state) capture.
 
-### First, we create the virtual display:
+### First, we start the game using an X display:
 
-```
-LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :0 +extension GLX -screen 0 640x480x24 & 
+ ```
+ xinit /root/.steam/steam.sh -applaunch 730 -gl
  ```
  
-### Then, we need to run CSGO on that dislay:
- 
- ```
- LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu DISPLAY=:0 /path/to/script/steam.sh -applaunch 730
- ```
- 
-### Lastly, we can view what it looks like for testing purposes:
- 
- **Option 1:**
+### Then, we can view what it looks like for testing purposes:
  
  Log-in to Steam on any other computer and it will be just like another PC to stream from.
- 
- **Option 2:**
- 
- Connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
- ```
- sudo x11vnc -safer -localhost -nopw -once -display :0 -auth /var/run/slim.auth
- ```
 
-Using the ```numpy_mss.py``` script, we can test the screenshot speed.
+ Using the ```numpy_mss.py``` script, we can test the screenshot speed.
 
 ---
 ## Some Stats:
