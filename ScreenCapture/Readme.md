@@ -2,8 +2,10 @@
 
 ### First, we start the game using an X display:
 
+*This launches directly into a deathmatch game on de_dust.*
+
  ```
- xinit /root/.steam/steam.sh -applaunch 730 -gl +map de_dust +cl_showfps 1 +sv_lan 1 -nointro
+ xinit /root/.steam/steam.sh -applaunch 730 -gl +map de_dust +cl_showfps 1 +sv_lan 1 -nointro +game_mode 2 +game_type 1 +exec gamemode_deathmatch
  ```
  
 ### Then, we can view what it looks like for testing purposes:
