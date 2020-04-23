@@ -14,7 +14,13 @@ LD_LIBRARY_PATH=/usr/lib/mesa-diverted/x86_64-linux-gnu Xvfb :0 +extension GLX -
  
 ### Lastly, we can view what it looks like for testing purposes:
  
- In order to view what the virtual display is showing, we can connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
+ Option 1:
+ 
+ Log-in to Steam on any other computer and it will be just like another PC to stream from.
+ 
+ Option 2:
+ 
+ Connect to the server with VNC by referring to [this](https://www.howopensource.com/2014/10/connect-to-linux-desktop-from-windows/) and using this command:
  ```
  sudo x11vnc -safer -localhost -nopw -once -display :0 -auth /var/run/slim.auth
  ```
