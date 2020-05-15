@@ -15,10 +15,14 @@ from tf_agents.environments import wrappers
 from tf_agents.environments import suite_gym
 from tf_agents.trajectories import time_step as ts
 
+from tf_agents.networks import actor_distribution_network
+
 from pynput.keyboard import Key, Controller
 
 from ScreenCapture.render import get_screen
 from ClientInput.pressKey import execute_action
+
+import PIL.Image
 
 
 class CSGOEnvironment(py_environment.PyEnvironment):
@@ -36,11 +40,11 @@ class CSGOEnvironment(py_environment.PyEnvironment):
         # Screenshot of game. Array is the dimensions of the image.
         'image': array_spec.BoundedArraySpec((480, 640, 4), np.float32, minimum=0,
                                              maximum=255),
-        # Observation of the current client state in the game. This will change.
+        # Observation of the current client state in the game. This will change. This also may become the state.
         'gamestate': array_spec.BoundedArraySpec((4,), np.float32, minimum=0,
                                               maximum=1)}
 
-    self._state = [0,0,0,0,0]
+    self._state = 0
     self._episode_ended = False
 
     # Create a controller object to be passed when executing an action.
@@ -63,7 +67,7 @@ class CSGOEnvironment(py_environment.PyEnvironment):
 
     # TODO: Restart CSGO.
 
-    self._state = [0, 0, 0, 0, 0]
+    self._state = 0
     self._episode_ended = False
     return ts.restart(self.render())
 
@@ -78,16 +82,14 @@ class CSGOEnvironment(py_environment.PyEnvironment):
     # Execute movement in game.
     execute_action(action, self.controller)
 
-    if self.game_over():
-      return ts.termination(np.array(self._state, dtype=np.int32), 0)
-
-    if self._episode_ended:
-      return ts.termination(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
-
-    if action[0]:
+    if action == 3:
+      self._episode_ended = True
+      reward = 0
+      return ts.termination(observation = [self.render(), np.zeros(4)], reward=reward)
+    elif action == 0:
       reward = 100
       return ts.transition(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
-    elif action[1]:
+    elif action == 1:
       reward = 100
       return ts.transition(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
     else:
@@ -100,69 +102,31 @@ class CSGOEnvironment(py_environment.PyEnvironment):
     # Grab screenshot of CSGO and normalize.
     return np.zeros(shape=(4,), dtype=np.float32), np.divide(get_screen(), 255, dtype=np.float32)
 
-
-  def game_over(self):
-    return self._episode_ended
-
-
 if __name__ == '__main__':
-
-  action_array = np.zeros(shape=(4,), dtype=np.int32)
-
-# Adjust the action array to adjust the actions.
-
-  action_array[3] = 1
-
   environment = CSGOEnvironment()
   tf_env = tf_py_environment.TFPyEnvironment(environment)
 
-  q_net = q_network.QNetwork(
-      tf_env.observation_spec(),
-      tf_env.action_spec(),
-      fc_layer_params=(100,))
+  time_step = environment.reset()
+  print(time_step)
+  rewards = []
+  steps = []
+  num_episodes = 5
 
-  agent = dqn_agent.DqnAgent(
-    tf_env.time_step_spec(),
-    tf_env.action_spec(),
-    q_network=q_net,
-    optimizer=optimizer,
-    td_errors_loss_fn=common.element_wise_squared_loss,
-    train_step_counter=tf.Variable(0))
+  for _ in range(num_episodes):
+    episode_reward = 0
+    episode_steps = 0
+    while not time_step.is_last():
+      action = tf.random.uniform([1], 0, 4, dtype=tf.int32)
+      time_step = tf_env.step(action)
+      episode_steps += 1
+      episode_reward += time_step.reward.numpy()
+    rewards.append(episode_reward)
+    steps.append(episode_steps)
+    time_step = tf_env.reset()
 
-  agent.initialize()
+  num_steps = np.sum(steps)
+  avg_length = np.mean(steps)
+  avg_reward = np.mean(rewards)
 
-
-
-  # time_step = tf_env.reset()
-  # num_steps = 3
-  # transitions = []
-  # reward = 0
-  # for i in range(num_steps):
-  #   action = tf.random_uniform([1], 0, 9, dtype=tf.int32)
-  #   # applies the action and returns the new TimeStep.
-  #   next_time_step = tf_env.step(action)
-  #   transitions.append([time_step, action, next_time_step])
-  #   reward += next_time_step.reward
-  #   time_step = next_time_step
-
-  # np_transitions = tf.nest.map_structure(lambda x: x.numpy(), transitions)
-  # print('\n'.join(map(str, np_transitions)))
-  # print('Total reward:', reward.numpy())
-
-
-
-
-
-  # time_step = environment.reset()
-  # print(time_step)
-  # cumulative_reward = time_step.reward
-
-  # for _ in range(3):
-  #   time_step = environment.step(action_array)
-  #   print(time_step)
-  #   cumulative_reward += time_step.reward
-
-  # # environment._episode_ended = True
-  # # time_step = environment.step(action_array)
-  # cumulative_reward += time_step.reward
-  # print('Final Reward = ', cumulative_reward)
+  print('num_episodes:', num_episodes, 'num_steps:', num_steps)
+  print('avg_length', avg_length, 'avg_reward:', avg_reward)

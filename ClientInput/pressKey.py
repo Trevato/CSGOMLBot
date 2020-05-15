@@ -7,6 +7,6 @@ def execute_action(action, controller):
     controller.press(keys[action])
     print('Pressing: ' + keys[action])
 
-    keys = keys.pop[action]
+    # keys = keys.pop[action]
     for key in keys:
         controller.release(keys[action])
