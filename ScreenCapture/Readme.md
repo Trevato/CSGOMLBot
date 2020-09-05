@@ -1,5 +1,7 @@
 # Notes for Screen (state) capture.
 
+*See bottom for notes for a fresh server.*
+
 ### First, we start the game using an X display:
 
 *This launches directly into a deathmatch game on de_dust.*
@@ -42,3 +44,20 @@ fps: 910.4197959626655
 Either render the game in a smaller frame or scale it down to mach the ```observation_spec```.
 
 The game runs on the GPU right now. That will probably hurt training performance but not sure yet. Also, I need to see if installing CUDA drivers will start to break things.
+
+# Notes for a fresh server (AWS)
+
+### Install steam with required drivers etc.
+
+```
+sudo apt install git -y
+git clone https://github.com/ShadowApex/steamos-ubuntu.git
+cd steamos-ubuntu
+sudo ./install.sh
+```
+
+### Install xinit to handle X server
+
+```
+sudo apt install xinit
+```
