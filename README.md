@@ -71,4 +71,4 @@ I really would like CSGO to be merely a building block into what I believe could
 
 Also, it might be possible to create clients for players to use to record their own gameplay in order to jumpstart learning.
 
-Lastly, distributed training using containerization could boost performance infinitly. [See more](https://arxiv.org/abs/1803.00933)
+Lastly, distributed training using containerization could boost performance infinitly. [See more](https://github.com/chagmgang/distributed_reinforcement_learning)
