@@ -70,3 +70,5 @@ I think there should be some exploration reward, especially at the beginning of 
 I really would like CSGO to be merely a building block into what I believe could change machine learning. My goal is to first implement CSGO to gain a bit of traction and then move to include any Steam game. This way, different machine learning techniques can be tested against a vast number of environments very easily.
 
 Also, it might be possible to create clients for players to use to record their own gameplay in order to jumpstart learning.
+
+Lastly, distributed training using containerization could boost performance infinitly. [See more](https://arxiv.org/abs/1803.00933)
