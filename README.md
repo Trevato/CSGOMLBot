@@ -71,4 +71,8 @@ I really would like CSGO to be merely a building block into what I believe could
 
 Also, it might be possible to create clients for players to use to record their own gameplay in order to jumpstart learning.
 
-Lastly, distributed training using containerization could boost performance infinitly. [See more](https://github.com/chagmgang/distributed_reinforcement_learning)
+Lastly, distributed training using containerization could boost performance infinitly. [See more](https://github.com/chagmgang/distributed_reinforcement_learning) Below is a few visuals to help illustrate. 
+
+Single Client           |  Distribution of Multiple Clients
+:-------------------------:|:-------------------------:
+![Concept on Single Machine](https://miro.medium.com/max/629/1*_mv3QOAV7WWXKblevo3nsQ.png) | ![Concept using multiple machines](https://github.com/google-research/seed_rl/raw/master/docs/architecture.gif)
