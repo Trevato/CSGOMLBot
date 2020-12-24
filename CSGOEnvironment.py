@@ -32,17 +32,18 @@ class CSGOEnvironment(py_environment.PyEnvironment):
 
     # Actions the Agent can take. Each will stand for a key press, mouse press, or mouse position.
 
-    self._action_spec = array_spec.BoundedArraySpec((1,), np.int32, minimum=0, maximum=3, name='action')
+    self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0, maximum=3, name='action')
 
     # Screenshot of game. Array is the dimensions of the image.
     self._observation_spec = {
 
         # Screenshot of game. Array is the dimensions of the image.
-        'image': array_spec.BoundedArraySpec((480, 640, 4), np.float32, minimum=0,
-                                             maximum=255),
+        'image': array_spec.BoundedArraySpec((480, 640, 4), np.int32, minimum=0,
+                                             maximum=255, name="game")
         # Observation of the current client state in the game. This will change. This also may become the state.
-        'gamestate': array_spec.BoundedArraySpec((4,), np.float32, minimum=0,
-                                              maximum=1)}
+        # 'gamestate': array_spec.BoundedArraySpec((4,), np.float32, minimum=0,
+        #                                       maximum=1, name="gamestate")
+                                              }
 
     self._state = 0
     self._episode_ended = False

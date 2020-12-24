@@ -3,21 +3,12 @@ from __future__ import division
 from __future__ import print_function
 
 import base64
-import imageio
 import io
-import matplotlib
-import matplotlib.pyplot as plt
 import os
 import shutil
 import tempfile
 import tensorflow as tf
-# import zipfile
-# import IPython
 
-try:
-  from google.colab import files
-except ImportError:
-  files = None
 from tf_agents.agents.dqn import dqn_agent
 from tf_agents.drivers import dynamic_step_driver
 from tf_agents.environments import suite_gym
@@ -58,7 +49,7 @@ optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=learning_rate)
 
 global_step = tf.compat.v1.train.get_or_create_global_step()
 
-agent = dqn_agent.DqnAgent(
+agent = dqn_agent.DqnAgent( 
     train_env.time_step_spec(),
     train_env.action_spec(),
     q_network=q_net,
