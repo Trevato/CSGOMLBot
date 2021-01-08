@@ -27,11 +27,11 @@ from CSGOEnvironment import CSGOEnvironment
 
 
 collect_steps_per_iteration = 100
-replay_buffer_capacity = 100000
+replay_buffer_capacity = 1000
 
 fc_layer_params = (100,)
 
-batch_size = 64
+batch_size = 32
 learning_rate = 1e-3
 log_interval = 5
 
@@ -40,6 +40,7 @@ eval_interval = 1000
 
 
 train_env = tf_py_environment.TFPyEnvironment(CSGOEnvironment())
+
 q_net = q_network.QNetwork(
     train_env.observation_spec(),
     train_env.action_spec(),
@@ -49,13 +50,15 @@ optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=learning_rate)
 
 global_step = tf.compat.v1.train.get_or_create_global_step()
 
+counter = tf.Variable(0)
+
 agent = dqn_agent.DqnAgent( 
     train_env.time_step_spec(),
     train_env.action_spec(),
     q_network=q_net,
     optimizer=optimizer,
     td_errors_loss_fn=common.element_wise_squared_loss,
-    train_step_counter=global_step)
+    train_step_counter=counter)
 agent.initialize()
 
 replay_buffer = tf_uniform_replay_buffer.TFUniformReplayBuffer(

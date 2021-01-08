@@ -35,15 +35,14 @@ class CSGOEnvironment(py_environment.PyEnvironment):
     self._action_spec = array_spec.BoundedArraySpec(shape=(), dtype=np.int32, minimum=0, maximum=3, name='action')
 
     # Screenshot of game. Array is the dimensions of the image.
-    self._observation_spec = {
+    self._observation_spec = array_spec.BoundedArraySpec((480, 640, 4), np.float32, minimum=0, maximum=255, name="game")
 
         # Screenshot of game. Array is the dimensions of the image.
-        'image': array_spec.BoundedArraySpec((480, 640, 4), np.int32, minimum=0,
-                                             maximum=255, name="game")
+        
         # Observation of the current client state in the game. This will change. This also may become the state.
         # 'gamestate': array_spec.BoundedArraySpec((4,), np.float32, minimum=0,
         #                                       maximum=1, name="gamestate")
-                                              }
+                                              
 
     self._state = 0
     self._episode_ended = False
@@ -86,22 +85,22 @@ class CSGOEnvironment(py_environment.PyEnvironment):
     if action == 3:
       self._episode_ended = True
       reward = 0
-      return ts.termination(observation = [self.render(), np.zeros(4)], reward=reward)
+      return ts.termination(observation = [self.render()], reward=reward)
     elif action == 0:
       reward = 100
-      return ts.transition(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
+      return ts.transition(observation = [self.render()], reward=reward, discount=1.0)
     elif action == 1:
       reward = 100
-      return ts.transition(observation = [self.render(), np.zeros(4)], reward=reward, discount=1.0)
+      return ts.transition(observation = [self.render()], reward=reward, discount=1.0)
     else:
       reward = 0
-      return ts.transition(observation = [self.render(), np.zeros(4)], reward=0.0, discount=1.0)
+      return ts.transition(observation = [self.render()], reward=0.0, discount=1.0)
 
 
   def render(self, mode='rgb_array'):
 
     # Grab screenshot of CSGO and normalize.
-    return np.zeros(shape=(4,), dtype=np.float32), np.divide(get_screen(), 255, dtype=np.float32)
+    return np.zeros(shape=(480, 640, 4), dtype=np.float32), np.divide(get_screen(), 255, dtype=np.float32)
 
 if __name__ == '__main__':
   environment = CSGOEnvironment()
