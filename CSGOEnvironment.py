@@ -17,8 +17,6 @@ from tf_agents.trajectories import time_step as ts
 
 from tf_agents.networks import actor_distribution_network
 
-from pynput.keyboard import Key, Controller
-
 from ScreenCapture.render import get_screen
 from ClientInput.pressKey import execute_action
 
@@ -46,9 +44,6 @@ class CSGOEnvironment(py_environment.PyEnvironment):
 
     self._state = 0
     self._episode_ended = False
-
-    # Create a controller object to be passed when executing an action.
-    self.controller = Controller()
 
     # How many actions there are.
     self._num_actions = 4
@@ -80,7 +75,7 @@ class CSGOEnvironment(py_environment.PyEnvironment):
       return self.reset()
 
     # Execute movement in game.
-    execute_action(action, self.controller)
+    execute_action(action)
 
     if action == 3:
       self._episode_ended = True
