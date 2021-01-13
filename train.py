@@ -35,11 +35,13 @@ batch_size = 32
 learning_rate = 1e-3
 log_interval = 5
 
-num_eval_episodes = 10
+num_eval_episodes = 1000
 eval_interval = 1000
 
-
+print('\n\n\nStarting CSGO Environment\n\n\n')
 train_env = tf_py_environment.TFPyEnvironment(CSGOEnvironment())
+print('\n\n\nCSGO Environment Started\n\n\n')
+
 
 q_net = q_network.QNetwork(
     train_env.observation_spec(),

@@ -3,6 +3,8 @@ from __future__ import division
 from __future__ import print_function
 
 import abc
+import time
+import threading
 import tensorflow as tf
 import numpy as np
 
@@ -21,6 +23,7 @@ from ScreenCapture.render import get_screen
 from ClientInput.pressKey import execute_action
 
 import PIL.Image
+from Server.CSGO_GSI.gsi_server import GSIServer, RequestHandler
 
 
 class CSGOEnvironment(py_environment.PyEnvironment):
@@ -47,6 +50,22 @@ class CSGOEnvironment(py_environment.PyEnvironment):
 
     # How many actions there are.
     self._num_actions = 4
+
+    self.reward_constants = {
+      'kill': 100,
+      'death': -150,
+    }
+    self.gsi_key = 'S8RL9Z6Y22TYQK45JB4V8PHRJJMD9DS9'
+
+    self.server = GSIServer(('localhost', 3000), self.gsi_key, RequestHandler, self.reward_constants)
+
+    print(time.asctime(), '-', 'CS:GO GSI server starting')
+
+    self.gsi_server_thread = threading.Thread(target=self.server.serve_forever)
+    self.gsi_server_thread.start()
+
+    # self.server.server_close()
+    print(time.asctime(), '-', 'CS:GO GSI server stopped')
 
 
   def action_spec(self):
@@ -77,20 +96,13 @@ class CSGOEnvironment(py_environment.PyEnvironment):
     # Execute movement in game.
     execute_action(action)
 
-    if action == 3:
-      self._episode_ended = True
-      reward = 0
-      return ts.termination(observation = [self.render()], reward=reward)
-    elif action == 0:
-      reward = 100
-      return ts.transition(observation = [self.render()], reward=reward, discount=1.0)
-    elif action == 1:
-      reward = 100
-      return ts.transition(observation = [self.render()], reward=reward, discount=1.0)
-    else:
-      reward = 0
-      return ts.transition(observation = [self.render()], reward=0.0, discount=1.0)
+    if not self.server.gamestatemanager.gamestate.get_round_phase == 'live':
+        self._episode_ended = True
 
+    reward = 100
+    reward += self.server.gamestatemanager.gamestate.get_reward()
+    print('Reward:', reward)
+    return ts.termination(observation = [self.render()], reward=reward)
 
   def render(self, mode='rgb_array'):
 
@@ -105,7 +117,7 @@ if __name__ == '__main__':
   print(time_step)
   rewards = []
   steps = []
-  num_episodes = 5
+  num_episodes = 100
 
   for _ in range(num_episodes):
     episode_reward = 0
